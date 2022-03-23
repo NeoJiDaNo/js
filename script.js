@@ -1,13 +1,13 @@
 alert('Угадай число от 1 до 100');
 let num;
-let chel;
+let userNum;
 
 
-function three(x) {
+function startGame(x) {
     x = Math.floor(Math.random() * 100);
     let live = 10;
-    function one() {
-        let y = prompt('Напиши твоё число от 1 до 100', 50)
+    function technicalPart(y) {
+        y = prompt('Напиши твоё число от 1 до 100', 50)
         function filter() {
             if (live > 0) {
                 if (false == isNaN(y)) {
@@ -16,34 +16,34 @@ function three(x) {
                     console.log(live);
                 } else {
                     alert('Это не число! Попробуйте снова')
-                    one()
+                    technicalPart(y)
                 }
             } else if (live === 0) {
                 let q = confirm('Ты умер!Играть будешь?')
                 if (false == q) {
-                    alert('Игра окончена!')
+                    y = null
     
                 } else if (true == q) {
-                    one()
+                    startGame(x)
                 }
             }
         }
-        function two() {
+        function gameOptions() {
             if (y == x) {
                 alert('Поздравляю! Ты угадал')
             } else if (y == null){
                 alert('Игра окончена')
             } else if (y > x) {
                 alert('Загаданное число меньше!')
-                one(x)
+                technicalPart(y)
             } else if (y < x) {
                 alert('Загаданное число больше!')
-                one(x)
+                technicalPart(y)
             }
         }
         filter()
-        two()
+        gameOptions()
     }
-    one()
+    technicalPart(userNum)
 }
-three(num)
+startGame(num)
