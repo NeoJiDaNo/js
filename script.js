@@ -31,6 +31,13 @@ function startGame(x) {
         function gameOptions() {
             if (y == x) {
                 alert('Поздравляю! Ты угадал')
+                let p = confirm('Играть будешь?')
+                if (false == p) {
+                    alert('Игра окончена')
+    
+                } else if (true == p) {
+                    startGame(x)
+                }
             } else if (y == null){
                 alert('Игра окончена')
             } else if (y > x) {
