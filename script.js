@@ -50,7 +50,7 @@ const appData = {
 
     getAllServicePrices: function (serv1, serv2){
         let sum = 0
-        let boba = 0;
+        let biba = 0;
         
         for (let i = 0; i < 2; i++){
             if (i === 0){
@@ -59,10 +59,10 @@ const appData = {
                 appData.service2 = prompt("Какой дополнительный тип услуги нужен?");
             }
             do {
-                boba = +prompt("Сколько это будет стоить?");
-            } while (!appData.isNumber(boba))
+                biba = +prompt("Сколько это будет стоить?");
+            } while (!appData.isNumber(biba))
     
-            sum += boba;
+            sum += biba;
         }
         return sum
     },
