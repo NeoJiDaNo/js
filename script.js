@@ -50,7 +50,7 @@ glav5[5].before(glav5[7])
 
 // “Глава 8: За пределами ES6”
 let li = document.createElement('li')
-li.innerHTML = '<li>Глава 8: За пределами ES6</li>';
+li.textContent = 'Глава 8: За пределами ES6';
 glav[5].appendChild(li)
 let glav6 = glav[5].querySelectorAll('li')
 console.log(glav6);
