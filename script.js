@@ -18,6 +18,10 @@ let range = document.querySelector('#range')
 let span = document.querySelector('#range-span')
 let circle = document.querySelector('#circle')
 
+span.textContent = '50'
+circle.style.height = '50%'
+circle.style.width = '50%'
+
 const rangeCircle = function(event) {
     span.textContent = event.target.value
     circle.style.height = event.target.value + '%'
