@@ -6,6 +6,7 @@ const otherItemsPercent = document.querySelectorAll('.other-items.percent');
 const otherItemsNumber = document.querySelectorAll('.other-items.number');
 const mainControlsInput = document.querySelector('.main-controls__input')
 const mainBox = document.querySelectorAll('.main-controls__views')[0]
+const cms = document.querySelectorAll('.custom-checkbox')[7]
 
 const inputRange = document.querySelector('.rollback [type=range]');
 const inputRangeValue = document.querySelector('.rollback .range-value');
@@ -43,6 +44,7 @@ const appData = {
         startBtn.addEventListener('click', this.start)
         buttonPlus.addEventListener('click', this.adselectBoxcreenBlock)
         resetBtn.addEventListener('click', this.reset)
+        cms.addEventListener('change', this.cms)
     },
     addTitle: function () {
         document.title = title.textContent
@@ -60,6 +62,10 @@ const appData = {
         appData.btnSwitch()
     },
     
+    cms: function () {
+        console.log('qqq');
+    },
+
     zeroing: function() {
         appData.fullPrice = 0
         appData.servicePricesNumber = 0
