@@ -6,7 +6,12 @@ const otherItemsPercent = document.querySelectorAll('.other-items.percent');
 const otherItemsNumber = document.querySelectorAll('.other-items.number');
 const mainControlsInput = document.querySelector('.main-controls__input')
 const mainBox = document.querySelectorAll('.main-controls__views')[0]
-const cms = document.querySelectorAll('.custom-checkbox')[7]
+const cmsCheckbox = document.querySelectorAll('.custom-checkbox')[7]
+const hidenCMS = document.querySelector('.hidden-cms-variants')
+const cmsSelect = document.querySelector('#cms-select')
+const cmsInputBox = document.querySelectorAll('.main-controls__input')[8]
+const cmsInputNum = document.querySelectorAll('.main-controls__input > input')[8]
+let cmsPercent = 0
 
 const inputRange = document.querySelector('.rollback [type=range]');
 const inputRangeValue = document.querySelector('.rollback .range-value');
@@ -44,7 +49,9 @@ const appData = {
         startBtn.addEventListener('click', this.start)
         buttonPlus.addEventListener('click', this.adselectBoxcreenBlock)
         resetBtn.addEventListener('click', this.reset)
-        cms.addEventListener('change', this.cms)
+        cmsCheckbox.addEventListener('change', this.cms)
+        cmsSelect.addEventListener('change', this.cmsSelect)
+        cmsInputBox.addEventListener('change', this.cmsPerc)
     },
     addTitle: function () {
         document.title = title.textContent
@@ -63,7 +70,24 @@ const appData = {
     },
     
     cms: function () {
-        console.log('qqq');
+        if (cmsCheckbox.checked) {
+            hidenCMS.style.display = 'flex'
+        } else {
+            hidenCMS.style.display = 'none'
+        }
+    },
+
+    cmsPerc: function () {
+        cmsPercent = +cmsInputNum.value
+    },
+
+    cmsSelect: function () {
+        if (cmsSelect.value == 'other') {
+            cmsInputBox.style.display = 'flex'
+        } else {
+            cmsPercent += +cmsSelect.value
+            cmsInputBox.style.display = 'none'
+        }
     },
 
     zeroing: function() {
@@ -91,15 +115,19 @@ const appData = {
         inputRange.value = 0
         inputRangeValue.textContent = '0%'
 
+        hidenCMS.style.display = 'none'
+        cmsInputBox.style.display = 'none'
+        cmsPercent = 0
+
         check.forEach(function (item) {
             item.checked = false
         })
 
-    inputBox.value = ''
+        inputBox.value = ''
         selectBox.selectedIndex = 0
 
         selectBox.disabled = false
-    inputBox.disabled = false
+        inputBox.disabled = false
         buttonPlus.disabled = false
 
         total.value = 0
@@ -213,7 +241,7 @@ const appData = {
             this.servicePricesPercent += this.screenPrice * (this.servicesPercent[key] / 100);
         }
 
-        this.fullPrice = this.screenPrice + this.servicePricesPercent + this.servicePricesNumber;
+        this.fullPrice = this.screenPrice + this.servicePricesPercent + this.servicePricesNumber + ((this.screenPrice + this.servicePricesPercent + this.servicePricesNumber) * (cmsPercent / 100));
         this.servicePercentPrice = this.fullPrice - (this.fullPrice * (this.rollback / 100));
     },
     logger: function() {
@@ -223,7 +251,9 @@ const appData = {
         console.log(appData.fullPrice);
         console.log(appData.servicePercentPrice);
         console.log(appData.screens);
-        console.log(appData.services);
+        console.log(typeof cmsPercent);
+        console.log(typeof cmsSelect);
+        console.log(cmsInputNum.value);
     }
 }
 
