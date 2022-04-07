@@ -17,8 +17,6 @@ const domElement = function (selector, height, width, bg, fontSize, pos) {
         p.textContent = 'gg wp'
         body.append(p)
         p.style.cssText = `height: ${height}; width: ${width}; background: ${bg}; font-size: ${fontSize}; position: ${pos}`
-    } else {
-        console.log('Даня гей');
     }
 }
 
