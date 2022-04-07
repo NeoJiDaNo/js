@@ -1,92 +1,57 @@
-'use strict'
+let div = document.createElement('div')
+let p = document.createElement('p')
+let body = document.querySelector('body')
+let lft = 0
+let tp = 0
 
-let servicePrice1
-let servicePrice2 
-
-let rollback = 10;
-let allServicePrices;
-let fullPrice;
-let servicePercentPrice;
-let title
-let screens
-let screenPrice
-let adaptive
-let service1
-let service2
-
-
-const isNumber = function (num) {
-    return !isNaN(parseFloat(num)) && isFinite(num)
-}
-
-const asking = function () {
-    title = prompt("Как называется ваш проект?");
-    screens = prompt("Какие типы экранов нужно разработать?");
-
-    do{
-        screenPrice = prompt("Сколько будет стоить данная работа?");
-    }while(!isNumber(screenPrice))
-
-    adaptive = confirm("Нужен ли адаптив на сайте?");
-}
-
-const showTypeOf = function (variable){
-    console.log(variable, typeof variable);
-}
-
-const getRollbackMessage = function(price){
-    if (price >= 30000) {
-        return "Даем скидку в 10%"
-    }else if(price >= 15000 && price< 30000) {
-        return"Даем скидку в 5%"
-    }else if (price >= 0 && price < 15000) {
-        return"Скидка не предусмотрена"
-    }else{
-        return"Что-то пошло не так"
+const domElement = function (selector, height, width, bg, fontSize, pos) {
+    if (0 == selector.indexOf('.')) {
+        let str = selector.slice(1)
+        div.classList.add(str)
+        div.textContent = 'gg wp'
+        body.append(div)
+        div.style.cssText = `height: ${height}; width: ${width}; background: ${bg}; font-size: ${fontSize}; position: ${pos}`
+    } else if (0 == selector.indexOf('#')) {
+        let str = selector.slice(1)
+        p.id = str
+        p.textContent = 'gg wp'
+        body.append(p)
+        p.style.cssText = `height: ${height}; width: ${width}; background: ${bg}; font-size: ${fontSize}; position: ${pos}`
+    } else {
+        console.log('Даня гей');
     }
 }
 
-const getAllServicePrices = function (serv1, serv2){
-    let sum = 0
-    let boba = 0;
-    
-    for (let i = 0; i < 2; i++){
-        if (i === 0){
-            service1 = prompt("Какой дополнительный тип услуги нужен?");
-        } else if (i === 1){
-            service2 = prompt("Какой дополнительный тип услуги нужен?");
-        }
-        do {
-            biba = +prompt("Сколько это будет стоить?");
-        } while (!isNumber(biba))
+const per = new domElement('.pancgey', '100px', '100px', 'red', '28px', 'absolute')
 
-        sum += biba;
+addEventListener('keydown', function (event) {
+    if (event.keyCode == 38) {
+        tp = tp - 10
+        div.style.top = tp + 'px'
+    } else if (event.keyCode == 39) {
+        lft = lft + 10
+        div.style.left = lft + 'px'
+    } else if (event.keyCode == 40) {
+        tp = tp + 10
+        div.style.top = tp + 'px'
+    } else if (event.keyCode == 37) {
+        lft = lft - 10
+        div.style.left = lft + 'px'
     }
-    return sum
-}
+})
 
-const getFullPrice = function(scr, allServ){
-    return scr + allServ;
-}
-
-const getServicePercentPrices = function(fullP, rollb){
-    return fullP - (fullP * (rollb / 100)) ;
-}
-
-const getTitle = function(title) {
-    return title.charAt(0).toUpperCase() + title.slice(1).toLowerCase()
-}
-
-asking()
-allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
-fullPrice = getFullPrice(screenPrice, allServicePrices);
-servicePercentPrice  = getServicePercentPrices(fullPrice, rollback);
-
-showTypeOf(title)
-showTypeOf(screenPrice)
-showTypeOf(adaptive)
-
-console.log(getTitle(title));
-console.log(allServicePrices);
-console.log(getRollbackMessage(fullPrice));
-console.log(screens.split(", "));
+addEventListener('keydown', function (event) {
+    if (event.keyCode == 38) {
+        tp = tp - 10
+        p.style.top = tp + 'px'
+    } else if (event.keyCode == 39) {
+        lft = lft + 10
+        p.style.left = lft + 'px'
+    } else if (event.keyCode == 40) {
+        tp = tp + 10
+        p.style.top = tp + 'px'
+    } else if (event.keyCode == 37) {
+        lft = lft - 10
+        p.style.left = lft + 'px'
+    }
+})
