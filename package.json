@@ -1,11 +1,11 @@
 {
-  "name": "webpack-demo",
+  "name": "js-lesson18",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch --mode development"
   },
   "author": "",
   "license": "ISC",
